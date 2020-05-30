@@ -5,21 +5,22 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import compression from 'compression'
 import customLogger from '../utils/logger'
+import mongoose from 'mongoose'
 
 /* My express App */
 export default function expressApp(functionName) {
-  const app = express()
-  const router = express.Router()
+    const app = express()
+    const router = express.Router()
 
-  // gzip responses
-  router.use(compression())
+    // gzip responses
+    router.use(compression())
 
-  // Set router base path for local dev
-  const routerBasePath = process.env.NODE_ENV === 'dev' ? `/${functionName}` : `/.netlify/functions/${functionName}/`
+    // Set router base path for local dev
+    const routerBasePath = process.env.NODE_ENV === 'dev' ? `/${functionName}` : `/.netlify/functions/${functionName}/`
 
-  /* define routes */
-  router.get('/', (req, res) => {
-    const html = `
+    /* define routes */
+    router.get('/', (req, res) => {
+        const html = `
     <html>
       <head>
         <style>
@@ -63,49 +64,49 @@ export default function expressApp(functionName) {
       </body>
     </html>
   `
-    res.send(html)
-  })
-
-  router.get('/users', (req, res) => {
-    res.json({
-      users: [
-        {
-          name: 'steve',
-        },
-        {
-          name: 'joe',
-        },
-      ],
+        res.send(html)
     })
-  })
 
-  router.get('/hello/', function(req, res) {
-    res.send('hello world')
-  })
+    router.get('/users', (req, res) => {
+        res.json({
+            users: [
+                {
+                    name: 'steve',
+                },
+                {
+                    name: 'joe',
+                },
+            ],
+        })
+    })
 
-  // Attach logger
-  app.use(morgan(customLogger))
+    router.get('/hello/', function (req, res) {
+        res.send('hello world')
+    })
 
-  // Setup routes
-  app.use(routerBasePath, router)
+    // Attach logger
+    app.use(morgan(customLogger))
 
-  // Apply express middlewares
-  router.use(cors())
-  router.use(bodyParser.json())
-  router.use(bodyParser.urlencoded({ extended: true }))
+    // Setup routes
+    app.use(routerBasePath, router)
+
+    // Apply express middlewares
+    router.use(cors())
+    router.use(bodyParser.json())
+    router.use(bodyParser.urlencoded({extended: true}))
 
 //check db connection
-  mongoose.connect("mongodb+srv://root:pass@cluster0-i0azz.gcp.mongodb.net/test?retryWrites=true&w=majority/myNewDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }, (err) => console.log('  yeah you win ! ' + (err ? err : '')));
+    mongoose.connect("mongodb+srv://root:pass@cluster0-i0azz.gcp.mongodb.net/test?retryWrites=true&w=majority/myNewDB", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }, (err) => console.log('  yeah you win ! ' + (err ? err : '')));
 
 
-  app.get('/', function (request, response) {
-    response.send('hello')
-  })
+    app.get('/', function (request, response) {
+        response.send('hello')
+    })
 //  our routes
-  app.use('/courses', CourseRoutes)
+    app.use('/courses', CourseRoutes)
 
-  return app
+    return app
 }
