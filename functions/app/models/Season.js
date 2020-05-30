@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var CompanySchema = new Schema({
+var SeasonSchema = new Schema({
     title: {
         type: String,
         required: true
     },
-    phone: {
+    description: {
         type: String,
         required: true
     },
@@ -14,4 +14,4 @@ var CompanySchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Company', CompanySchema);
+module.exports = mongoose.model('Season', SeasonSchema);
