@@ -97,11 +97,10 @@ export default function expressApp(functionName) {
     router.use(bodyParser.urlencoded({extended: true}))
 
 //check db connection
-    /*mongoose.connect("mongodb+srv://root:pass@cluster0-i0azz.gcp.mongodb.net/test?retryWrites=true&w=majority/myNewDB", {
+    mongoose.connect("mongodb+srv://root:pass@cluster0-i0azz.gcp.mongodb.net/test?retryWrites=true&w=majority/myNewDB", {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }, (err) => console.log('  yeah you win ! ' + (err ? err : '')));
-*/
 
 
 //  our routes
