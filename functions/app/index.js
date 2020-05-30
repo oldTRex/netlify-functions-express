@@ -107,7 +107,7 @@ export default function expressApp(functionName) {
         response.send('hello')
     })
 //  our routes
-    app.use('/courses', CourseRoutes)
+    //app.use('/courses', CourseRoutes)
 
     return app
 }
