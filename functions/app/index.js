@@ -6,7 +6,7 @@ import bodyParser from 'body-parser'
 import compression from 'compression'
 import customLogger from '../utils/logger'
 import mongoose from 'mongoose'
-//import CourseRoutes from './routes/course'
+import CourseRoutes from './routes/course'
 
 /* My express App */
 export default function expressApp(functionName) {
