@@ -103,9 +103,7 @@ export default function expressApp(functionName) {
     }, (err) => console.log('  yeah you win ! ' + (err ? err : '')));
 
 
-    app.get('/', function (request, response) {
-        response.send('hello')
-    })
+
 //  our routes
     //app.use('/courses', CourseRoutes)
 
