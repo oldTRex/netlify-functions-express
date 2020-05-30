@@ -5,8 +5,8 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import compression from 'compression'
 import customLogger from '../utils/logger'
-import mongoose from 'mongoose'
-import CourseRoutes from './routes/course'
+//import mongoose from 'mongoose'
+//import CourseRoutes from './routes/course'
 
 /* My express App */
 export default function expressApp(functionName) {
@@ -97,11 +97,11 @@ export default function expressApp(functionName) {
     router.use(bodyParser.urlencoded({extended: true}))
 
 //check db connection
-    mongoose.connect("mongodb+srv://root:pass@cluster0-i0azz.gcp.mongodb.net/test?retryWrites=true&w=majority/myNewDB", {
+    /*mongoose.connect("mongodb+srv://root:pass@cluster0-i0azz.gcp.mongodb.net/test?retryWrites=true&w=majority/myNewDB", {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }, (err) => console.log('  yeah you win ! ' + (err ? err : '')));
-
+*/
 
 
 //  our routes
